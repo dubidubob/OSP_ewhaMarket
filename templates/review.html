@@ -1,0 +1,243 @@
+{%extends "top.html"%} {% block section %}
+    <!-- 전체 리뷰 파트 -->
+	<div class="five_container">
+		<div class="five_title_img">
+            <div class="five_rate_avg">
+		        <span class="five_star_numbers">{{total}}개의 리뷰가 등록되었습니다.</span>
+                    베스트 리뷰
+	        </div>
+            <div class="five_img_box">
+                {% for key, value in top_images %}
+                    <a><img src="static/images/{{ value.img_path }}" onclick="location.href='/view_review_detail/{{key}}/';" style="cursor:pointer;"></a>
+                {% endfor %}
+            </div>
+		</div>
+    </div>
+        {% if total > 0 %}
+		<div class="five_review">
+            {% for key, value in row1 %}
+			<div class="five_user_reviews" onclick="location.href='/view_review_detail/{{key}}/';" style="cursor:pointer;">
+				<div class="five_user_info">
+					<p class="user-profile-img"><img src="../static/images/mypage.jpeg" alt="사용자 프로필 사진"></p>
+					<div class="five_user_details">
+						<p class="five_user_name">{{value.ID}}</p>
+						<div class="five_user_rating">
+							{% for _ in range(value.rate|int) %}
+                                <span class="five_star">&#9733;</span>
+                            {% endfor %}
+                            {% for _ in range(5 - value.rate|int) %}
+                                <span class="five_unstar">&#9734;</span>
+                            {% endfor %}
+							<span class="five_date">{{value.timestamp}}</span>
+						</div>
+						<div class="five_review_title">
+							<p>상품명: {{key}}</p>
+							<p>{{value.title}}</p>
+						</div>
+					</div>
+					<div class="five_review_img"><img src="static/images/{{value.img_path}}"></div>
+					<div id="five_thumb">
+						<h1>도움이 되었어요</h1><img id="five_thumb_image" src="static/images/five_thumb.png">
+						<span class="five_thumbs_num">
+                           {% if value.thumb_count is not defined %}
+                             0
+                           {% else %}
+                             {{ value.thumb_count }}
+                           {% endif %}
+                        </span>
+					</div>
+				</div>
+				<hr>
+			</div>
+            {% endfor %}
+            {% for key, value in row2 %}
+			<div class="five_user_reviews" onclick="location.href='/view_review_detail/{{key}}/';" style="cursor:pointer;">
+				<div class="five_user_info">
+					<p class="user-profile-img"><img src="../static/images/mypage.jpeg" alt="사용자 프로필 사진"></p>
+					<div class="five_user_details">
+						<p class="five_user_name">{{value.ID}}</p>
+						<div class="five_user_rating">
+							{% for _ in range(value.rate|int) %}
+                                <span class="five_star">&#9733;</span>
+                            {% endfor %}
+                            {% for _ in range(5 - value.rate|int) %}
+                                <span class="five_unstar">&#9734;</span>
+                            {% endfor %}
+							<span class="five_date">{{value.timestamp}}</span>
+						</div>
+						<div class="five_review_title">
+							<p>상품명: {{key}}</p>
+							<p>{{value.title}}</p>
+						</div>
+					</div>
+					<div class="five_review_img"><img src="static/images/{{value.img_path}}"></div>
+					<div id="five_thumb">
+						<h1>도움이 되었어요</h1><img id="five_thumb_image" src="static/images/five_thumb.png">
+						<span class="five_thumbs_num">
+                           {% if value.thumb_count is not defined %}
+                             0
+                           {% else %}
+                             {{ value.thumb_count }}
+                           {% endif %}
+                        </span>
+					</div>
+				</div>
+				<hr>
+			</div>
+            {% endfor %}
+            {% for key, value in row3 %}
+			<div class="five_user_reviews" onclick="location.href='/view_review_detail/{{key}}/';" style="cursor:pointer;">
+				<div class="five_user_info">
+					<p class="user-profile-img"><img src="../static/images/mypage.jpeg" alt="사용자 프로필 사진"></p>
+					<div class="five_user_details">
+						<p class="five_user_name">{{value.ID}}</p>
+						<div class="five_user_rating">
+							{% for _ in range(value.rate|int) %}
+                                <span class="five_star">&#9733;</span>
+                            {% endfor %}
+                            {% for _ in range(5 - value.rate|int) %}
+                                <span class="five_unstar">&#9734;</span>
+                            {% endfor %}
+							<span class="five_date">{{value.timestamp}}</span>
+						</div>
+						<div class="five_review_title">
+							<p>상품명: {{key}}</p>
+							<p>{{value.title}}</p>
+						</div>
+					</div>
+					<div class="five_review_img"><img src="static/images/{{value.img_path}}"></div>
+					<div id="five_thumb">
+						<h1>도움이 되었어요</h1><img id="five_thumb_image" src="static/images/five_thumb.png">
+						<span class="five_thumbs_num">
+                           {% if value.thumb_count is not defined %}
+                             0
+                           {% else %}
+                             {{ value.thumb_count }}
+                           {% endif %}
+                        </span>
+					</div>
+				</div>
+				<hr>
+			</div>
+            {% endfor %}
+            {% for key, value in row4 %}
+			<div class="five_user_reviews" onclick="location.href='/view_review_detail/{{key}}/';" style="cursor:pointer;">
+				<div class="five_user_info">
+					<p class="user-profile-img"><img src="../static/images/mypage.jpeg" alt="사용자 프로필 사진"></p>
+					<div class="five_user_details">
+						<p class="five_user_name">{{value.ID}}</p>
+						<div class="five_user_rating">
+							{% for _ in range(value.rate|int) %}
+                                <span class="five_star">&#9733;</span>
+                            {% endfor %}
+                            {% for _ in range(5 - value.rate|int) %}
+                                <span class="five_unstar">&#9734;</span>
+                            {% endfor %}
+							<span class="five_date">{{value.timestamp}}</span>
+						</div>
+						<div class="five_review_title">
+							<p>상품명: {{key}}</p>
+							<p>{{value.title}}</p>
+						</div>
+					</div>
+					<div class="five_review_img"><img src="static/images/{{value.img_path}}"></div>
+					<div id="five_thumb">
+						<h1>도움이 되었어요</h1><img id="five_thumb_image" src="static/images/five_thumb.png">
+						<span class="five_thumbs_num">
+                           {% if value.thumb_count is not defined %}
+                             0
+                           {% else %}
+                             {{ value.thumb_count }}
+                           {% endif %}
+                        </span>
+					</div>
+				</div>
+				<hr>
+			</div>
+            {% endfor %}
+            {% for key, value in row5 %}
+			<div class="five_user_reviews" onclick="location.href='/view_review_detail/{{key}}/';" style="cursor:pointer;">
+				<div class="five_user_info">
+					<p class="user-profile-img"><img src="../static/images/mypage.jpeg" alt="사용자 프로필 사진"></p>
+					<div class="five_user_details">
+						<p class="five_user_name">{{value.ID}}</p>
+						<div class="five_user_rating">
+							{% for _ in range(value.rate|int) %}
+                                <span class="five_star">&#9733;</span>
+                            {% endfor %}
+                            {% for _ in range(5 - value.rate|int) %}
+                                <span class="five_unstar">&#9734;</span>
+                            {% endfor %}
+							<span class="five_date">{{value.timestamp}}</span>
+						</div>
+						<div class="five_review_title">
+							<p>상품명: {{key}}</p>
+							<p>{{value.title}}</p>
+						</div>
+					</div>
+					<div class="five_review_img"><img src="static/images/{{value.img_path}}"></div>
+					<div id="five_thumb">
+						<h1>도움이 되었어요</h1><img id="five_thumb_image" src="static/images/five_thumb.png">
+						<span class="five_thumbs_num">
+                           {% if value.thumb_count is not defined %}
+                             0
+                           {% else %}
+                             {{ value.thumb_count }}
+                           {% endif %}
+                        </span>
+					</div>
+				</div>
+				<hr>
+			</div>
+            {% endfor %}
+            {% for key, value in row6 %}
+			<div class="five_user_reviews" onclick="location.href='/view_review_detail/{{key}}/';" style="cursor:pointer;">
+				<div class="five_user_info">
+					<p class="user-profile-img"><img src="../static/images/mypage.jpeg" alt="사용자 프로필 사진"></p>
+					<div class="five_user_details">
+						<p class="five_user_name">{{value.ID}}</p>
+						<div class="five_user_rating">
+							{% for _ in range(value.rate|int) %}
+                                <span class="five_star">&#9733;</span>
+                            {% endfor %}
+                            {% for _ in range(5 - value.rate|int) %}
+                                <span class="five_unstar">&#9734;</span>
+                            {% endfor %}
+							<span class="five_date">{{value.timestamp}}</span>
+						</div>
+						<div class="five_review_title">
+							<p>상품명: {{key}}</p>
+							<p>{{value.title}}</p>
+						</div>
+					</div>
+					<div class="five_review_img"><img src="static/images/{{value.img_path}}"></div>
+					<div id="five_thumb">
+						<h1>도움이 되었어요</h1><img id="five_thumb_image" src="static/images/five_thumb.png">
+						<span class="five_thumbs_num">
+                           {% if value.thumb_count is not defined %}
+                             0
+                           {% else %}
+                             {{ value.thumb_count }}
+                           {% endif %}
+                        </span>
+					</div>
+				</div>
+				<hr>
+			</div>
+            {% endfor %}
+            <div class="pagination">
+		        <ul>
+                    <li>
+                        {% for i in range(page_count)%}
+                        <a href="{{url_for('view_review', page=i)}}" color="black">{{i+1}}</a>
+                        {% endfor %}
+                    </li>
+		        </ul>
+	        </div>
+        {% else %}
+        <p>
+        등록된 리뷰가 없습니다.
+        </p>
+        {% endif %}
+	    </div>
+{% endblock section %}

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>리뷰 페이지</title>
+    <link rel="stylesheet" type="text/css" href="../../static/style.css" />
+    <script src="{{url_for('static', filename='main.js')}}" defer></script>
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+</head>
+<body>
+
+    <div class = "full-container">
+          
+        <nav class="navbar">
+            
+        <div class="top_navbar">
+          <ul>
+            {% if session['id'] %}
+            <li><a href="/mypage/{{ session['id'] }}/">마이페이지</a></li>
+                <li>
+                    <a href="/logout">로그아웃</a>
+                    <b>{{ session['id'] }}님</b>
+                </li>
+                {% else %}
+                <li><a href="/login">로그인</a></li>
+            {% endif %}
+          </ul>
+        </div>
+
+          <div class = "title"><a href="/">이화산타</a></div>
+          <div class="navbar_container">
+            <ul>
+              <li><a href="/">전체 상품</a></li>
+              <li><a href="/reg_items">상품 등록</a></li>
+              <li><a href="/review">전체 리뷰</a></li>
+              <li><a href="">리뷰 등록</a></li>
+            </ul>
+          </div>
+        </nav>
+
+
+    <div class="six-container">
+        
+        <div class="six-user-info">
+            <div class="six-avatar"><img class="six-user-image" src=""></div>
+            <div class="six-user-details">
+                <p class="six-nickname">{{data.ID}}</p>
+                <p class="six-product-name">상품명: {{name}}</p>
+                <p class="six-review-title">{{data.title}}</p>
+                <p class="six-date">{{data.timestamp}}</p>
+            </div>
+            <div class="six-unstar_rating">
+                {% for _ in range(data.rate|int) %}
+                    <span class="five_star">&#9733;</span>
+                {% endfor %}
+                {% for _ in range(5 - data.rate|int) %}
+                    <span class="five_unstar">&#9734;</span>
+                {% endfor %}
+            </div>
+        </div>
+        <div id="six-wrap_image">
+            <article class="six-article"><img class="six-img" src="../../static/images/{{data.img_path}}"></article>
+        </div>
+        <textarea class="detail-txt" id="readonly" readonly>{{data.review}}</textarea>
+        <div id="six-thumb">
+            도움이 되었어요 <img id="six-thumb-image" src="../../static/images/thumb-up.png"> 
+            {% if data.thumb_count is not defined %}
+                0
+            {% endif %}
+                {{ data.thumb_count }}
+        </div>
+        <script>
+        function showThumb() {
+            $.ajax({
+                type: 'GET',
+                url: '/show_thumb/{{name}}/',
+                data: {},
+                success: function (response){
+                    let item_thumb = response['item_thumb'];
+                    
+                    if (item_thumb['thumbed'] == 'Y')
+                    {
+                        $("#six-thumb-image").attr("src", "../../static/images/thumb-up-filled.png");
+                        $("#six-thumb-image").attr("onclick","unthumb()");
+                    }
+                    else
+                    {
+                        $("#six-thumb-image").attr("src", "../../static/images/thumb-up.png");
+                        $("#six-thumb-image").attr("onclick","thumb()");
+                    }
+                }
+            }); 
+        }
+    
+        function thumb() {
+            $.ajax({
+                type: 'POST',
+                url: '/thumb/{{name}}/',
+                data: {thumbed : "Y"},
+                success: function (response) {
+                    alert(response['msg']);
+                    window.location.reload()
+                 }
+             });
+         }
+    
+        function unthumb() {
+             $.ajax({
+                 type: 'POST',
+                 url: '/unthumb/{{name}}/',
+                 data: {thumbed : "N"},
+                 success: function (response) {
+                     alert(response['msg']);
+                     window.location.reload()
+                 }
+             });
+         }
+         $(document).ready(function () {
+             showThumb();
+         });
+        </script>
+    </div>
+</body>
+</html>
